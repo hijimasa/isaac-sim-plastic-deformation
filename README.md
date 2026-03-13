@@ -42,6 +42,8 @@ isaac-sim-plastic-deformation/
 │                       └── nodes/
 │                           ├── OgnPlasticDeformation.ogn   # Node definition
 │                           └── OgnPlasticDeformation.py    # Node implementation
+├── sample/
+│   └── plastic_deformation_test.usd         # Sample USD scene (ready to use)
 └── scripts/
     └── plastic_deformation_demo.py          # Standalone demo script
 ```
@@ -128,6 +130,14 @@ Search order: Material bindings on the specified prim and its descendants → En
 - `yieldStress` can be changed in real-time during simulation
 - Setting `enabled` to false stops plastic deformation processing and resets internal state
 - Recommended `yieldStress` is approximately 1/10 to 1/30 of the material's Young's modulus
+
+### Quick Start: Using the Sample Scene
+
+A pre-configured USD scene is provided in the `sample/` directory. This scene includes a Deformable Body with PhysicsMaterial and an Action Graph already set up.
+
+1. Complete steps 1 and 2 above (register and enable the Extension)
+2. Open `sample/plastic_deformation_test.usd` in Isaac Sim
+3. Press **Play** to start the simulation
 
 ### Method 2: Run as a Standalone Script
 

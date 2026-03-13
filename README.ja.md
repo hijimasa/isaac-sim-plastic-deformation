@@ -42,6 +42,8 @@ isaac-sim-plastic-deformation/
 │                       └── nodes/
 │                           ├── OgnPlasticDeformation.ogn   # ノード定義
 │                           └── OgnPlasticDeformation.py    # ノード実装
+├── sample/
+│   └── plastic_deformation_test.usd         # サンプル USD シーン（すぐに使用可能）
 └── scripts/
     └── plastic_deformation_demo.py          # スタンドアロンデモスクリプト
 ```
@@ -128,6 +130,14 @@ On Playback Tick  ──execOut──>  Plastic Deformation
 - `yieldStress` はシミュレーション中にリアルタイムで変更可能です
 - `enabled` を false にすると塑性変形処理が停止し、内部状態がリセットされます
 - `yieldStress` の推奨値は材料のヤング率の 1/10 〜 1/30 程度です
+
+### クイックスタート: サンプルシーンを使用
+
+`sample/` ディレクトリに、Deformable Body・PhysicsMaterial・Action Graph が設定済みの USD シーンが用意されています。
+
+1. 上記の手順 1・2 を完了する（Extension の登録と有効化）
+2. Isaac Sim で `sample/plastic_deformation_test.usd` を開く
+3. **Play** ボタンを押してシミュレーションを開始
 
 ### 方法 2: スタンドアロンスクリプトとして実行
 
