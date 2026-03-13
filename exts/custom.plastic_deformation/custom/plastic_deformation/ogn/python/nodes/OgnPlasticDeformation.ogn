@@ -1,0 +1,57 @@
+{
+    "PlasticDeformation": {
+        "version": 1,
+        "description": "Applies pseudo-plastic (permanent) deformation to a Deformable Body prim. Monitors Von Mises stress and freezes node positions after yielding, preventing elastic recovery.",
+        "language": "Python",
+        "categories": {
+            "isaacSim": "Deformable body plastic deformation"
+        },
+        "metadata": {
+            "uiName": "Plastic Deformation"
+        },
+        "inputs": {
+            "execIn": {
+                "type": "execution",
+                "description": "The input execution"
+            },
+            "deformablePrimPath": {
+                "type": "string",
+                "description": "Prim path of the Deformable Body (e.g. /World/DeformCube)"
+            },
+            "yieldStress": {
+                "type": "float",
+                "description": "Von Mises yield stress in Pa. Nodes exceeding this stress begin yielding.",
+                "default": 1000.0
+            },
+            "youngsModulus": {
+                "type": "float",
+                "description": "Young's modulus (Pa). 0 = auto-read from PhysicsMaterial.",
+                "default": 0.0
+            },
+            "poissonsRatio": {
+                "type": "float",
+                "description": "Poisson's ratio. 0 = auto-read from PhysicsMaterial.",
+                "default": 0.0
+            },
+            "enabled": {
+                "type": "bool",
+                "description": "Enable or disable plastic deformation processing",
+                "default": true
+            }
+        },
+        "outputs": {
+            "execOut": {
+                "type": "execution",
+                "description": "The output execution"
+            },
+            "numFrozenNodes": {
+                "type": "int",
+                "description": "Number of currently frozen (plastically deformed) nodes"
+            },
+            "numYieldingNodes": {
+                "type": "int",
+                "description": "Number of currently yielding nodes"
+            }
+        }
+    }
+}

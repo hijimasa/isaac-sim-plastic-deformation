@@ -1,0 +1,18 @@
+[package]
+version = "0.1.0"
+category = "Simulation"
+title = "Plastic Deformation for Deformable Bodies"
+description = "OmniGraph node that applies pseudo-plastic (permanent) deformation to Deformable Body prims by monitoring Von Mises stress and freezing node positions after yielding."
+authors = ["IRLab"]
+keywords = ["isaac", "deformable", "plastic", "deformation", "FEM"]
+
+[dependencies]
+"omni.graph" = {}
+"omni.physx" = {}
+
+[[python.module]]
+name = "custom.plastic_deformation"
+
+[fswatcher.patterns]
+include = ["*.ogn", "*.py"]
+exclude = ["Ogn*Database.py"]
