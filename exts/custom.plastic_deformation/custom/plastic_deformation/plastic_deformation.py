@@ -51,10 +51,16 @@ def _wf_compute_deformation_matrix(
     inverse: bool,
 ) -> wp.mat33:
     ti = indices[body_index][tetrahedron_index]
-    v0 = positions[body_index][ti[0]]
-    v1 = positions[body_index][ti[1]]
-    v2 = positions[body_index][ti[2]]
-    v3 = positions[body_index][ti[3]]
+    # Warp 1.12 以降、array の view/slice インデックスは int 限定になったため
+    # uint32 の要素を明示的に int32 に変換する。
+    i0 = wp.int32(ti[0])
+    i1 = wp.int32(ti[1])
+    i2 = wp.int32(ti[2])
+    i3 = wp.int32(ti[3])
+    v0 = positions[body_index][i0]
+    v1 = positions[body_index][i1]
+    v2 = positions[body_index][i2]
+    v3 = positions[body_index][i3]
     u1 = wp.vec3(v1[0] - v0[0], v1[1] - v0[1], v1[2] - v0[2])
     u2 = wp.vec3(v2[0] - v0[0], v2[1] - v0[1], v2[2] - v0[2])
     u3 = wp.vec3(v3[0] - v0[0], v3[1] - v0[1], v3[2] - v0[2])
@@ -63,11 +69,8 @@ def _wf_compute_deformation_matrix(
         det = wp.determinant(m)
         volume = det / 6.0
         if volume < 1e-9:
-            m = wp.mat33(
-                wp.vec3(0.0, 0.0, 0.0),
-                wp.vec3(0.0, 0.0, 0.0),
-                wp.vec3(0.0, 0.0, 0.0),
-            )
+            # Warp 1.12 で wp.mat33(vec3, vec3, vec3) は廃止。スカラ 9 要素形式で構築する。
+            m = wp.mat33(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
         else:
             m = wp.inverse(m)
     return m
